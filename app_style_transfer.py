@@ -22,7 +22,6 @@ print("GPU available: ", tf.config.list_physical_devices('GPU'))
 def crop_center(image):
   """Returns a cropped square image."""
   shape = image.shape
-  st.write(shape)
   new_shape = min(shape[0], shape[1])
   offset_y = max(shape[0] - shape[1], 0) // 2
   offset_x = max(shape[1] - shape[0], 0) // 2
@@ -41,10 +40,10 @@ def load_image(uploaded_file, image_size=(256, 256), col = st):
 
   return img
 
-def show_n(images, titles=('',)):
+def show_n(images, titles=('',), col = st):
   n = len(images)
   for i in range(n):
-      st.image(np.array(images[i][0]))
+      col.image(np.array(images[i][0]))
 
 
 
@@ -82,5 +81,6 @@ if __name__ == "__main__":
         style_image = tf.nn.avg_pool(style_image, ksize=[3, 3], strides=[1, 1], padding='SAME')
         outputs = hub_module(tf.constant(content_image), tf.constant(style_image))
         stylized_image = outputs[0]
-        st.markdown('# Style applied on the image')
-        show_n([stylized_image], titles=['Stylized image'])
+        col3, col4, col5 = st.columns(3)
+        col4.markdown('# Style applied on the image')
+        show_n([stylized_image], titles=['Stylized image'], col = col4)
