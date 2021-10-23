@@ -1,0 +1,5 @@
+seaborn
+keras
+pillow
+tensorflow
+tensorflow_hub
