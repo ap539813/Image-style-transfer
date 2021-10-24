@@ -35,7 +35,7 @@ def load_image(uploaded_file, image_size=(256, 256), col = st):
   img = tf.convert_to_tensor(img)
   img = crop_center(img)
   img = tf.image.resize(img, image_size)
-  img = tf.reshape(img, [-1, img.shape[0], img.shape[1], 3])/255
+  img = tf.reshape(img, [-1, image_size[0], image_size[1], 3])/255
   col.image(np.array(img[0]))
 
   return img
