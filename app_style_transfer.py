@@ -29,7 +29,7 @@ def crop_center(image):
       image, offset_y, offset_x, new_shape, new_shape)
   return image
 
-@functools.lru_cache(maxsize=None)
+# @functools.lru_cache(maxsize=None)
 def load_image(uploaded_file, image_size=(256, 256), col = st):
   img = Image.open(uploaded_file)
   img = tf.convert_to_tensor(img)
@@ -46,8 +46,6 @@ def show_n(images, titles=('',), col = st):
   n = len(images)
   for i in range(n):
       col.image(np.array(images[i][0]))
-
-
 
 
 
